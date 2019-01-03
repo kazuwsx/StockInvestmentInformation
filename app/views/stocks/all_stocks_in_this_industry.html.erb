@@ -1,0 +1,10 @@
+<h1><%= params[:kind_of_industry] %> </h1>
+<table>
+  <tr>
+    <td>証券番号</td>
+    <td>会社名</td>
+    <td>株価</td>
+    <td>時価総額</td>
+  </tr>
+  <%= render @stocks %>
+</table>

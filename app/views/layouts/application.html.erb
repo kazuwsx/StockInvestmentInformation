@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OGUKABU</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+  </head>
+
+  <body>
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+    <header>
+      株情報サイト
+    </header>
+    <%= render :file => "shared/side_bar" %>
+    <div class="contents">
+      <%= yield %>
+    </div>
+  </body>
+</html>

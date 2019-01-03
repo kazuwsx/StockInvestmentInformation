@@ -1,0 +1,27 @@
+<div class="explanation">
+  <h1>魔法の公式</h1>
+  <p>
+    ROA,PERをそれぞれランク付けし、それぞれのランキングの順位合計値が低い順に上場企業を抽出<br>
+    （銀行業、不動産業の上場企業を排除）
+  </p>
+</div>
+<table>
+  <tr>
+    <td>順位</td>
+    <td>証券番号</td>
+    <td>会社名</td>
+    <td>PER</td>
+    <td>ROA</td>
+    <td>株価</td>
+  </tr>
+  <% @stocks.each_with_index do |stock, i| %>
+    <tr>
+      <td><%= "#{i+1}位" %></td>
+      <td><%= stock.securities_code %></td>
+      <td><%= link_to stock.corp_name.truncate(40, omission: '~~~'), stock_path(stock.securities_code) %></td>
+      <td><%= stock.basic_index&.per %></td>
+      <td><%= stock.various_index&.roa %></td>
+      <td><%= "￥#{stock.basic_information&.stock_price.ceil.to_s(:delimited)}" %></td>
+    </tr>
+  <% end %>
+</table>

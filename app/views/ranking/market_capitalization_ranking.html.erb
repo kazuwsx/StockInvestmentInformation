@@ -1,0 +1,20 @@
+<div class="explanation">
+  <h1>時価総額ランキング</h1>
+  <p>※時価総額上位500社</p>
+</div>
+<table>
+  <tr>
+    <td>順位</td>
+    <td>証券番号</td>
+    <td>会社名</td>
+    <td>時価総額</td>
+  </tr>
+  <% @stocks.each_with_index do |stock, i| %>
+    <tr>
+      <td><%= "#{i+1}位" %></td>
+      <td><%= stock.securities_code %></td>
+      <td><%= link_to stock.corp_name.truncate(40, omission: '~~~'), stock_path(stock.securities_code) %></td>
+      <td><%= "#{ stock.basic_information&.market_capitalization.div(1000).to_s(:delimited) }千円" %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,11 @@
+<table>
+  <% each_slice =  @stocks.each_slice(6).to_a  %>
+  <% each_slice.each do |e| %>
+    <tr>
+    <% e.each do |s| %>
+      <td><%= link_to s, all_stocks_in_this_industry_path( kind_of_industry: s)  %>   </td>
+    <%end%>
+    <br>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,20 @@
+<div class="explanation">
+  <h1>ROEランキング</h1>
+  <p>ROE 20.0以上の上場企業</p>
+</div>
+<table>
+  <tr>
+    <td>順位</td>
+    <td>証券番号</td>
+    <td>会社名</td>
+    <td>ROE</td>
+  </tr>
+  <% @stocks.each_with_index do |stock, i| %>
+    <tr>
+      <td><%= "#{i+1}位" %></td>
+      <td><%= stock.securities_code %></td>
+      <td><%= link_to stock.corp_name.truncate(40, omission: '~~~'), stock_path(stock.securities_code) %></td>
+      <td><%= stock.various_index&.roe %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,127 @@
+<% if @stock.favorite == nil   %>
+  <%= link_to "お気に入りに追加", favorite_path( securities_code: @stock.securities_code) %><br>
+<% end %>
+<div class="explanation">
+  <h1><%= @stock.corp_name %></h1>
+</div>
+<table>
+  <tr>
+    基本情報
+  </tr>
+  <tr>
+    <td>会社名</td>
+    <td><%= @stock.corp_name%></td>
+
+  </tr>
+  <tr>
+    <td>証券番号</td>
+    <td><%=  @stock.securities_code %></td>
+  </tr>
+  <tr>
+    <td>時価総額</td>
+    <td><%= "￥#{@stock.basic_information&.market_capitalization&.ceil.to_s(:delimited) }" %></td>
+  </tr>
+  <tr>
+    <td>配当利回り</td>
+    <td><%= "#{@stock.basic_information&.dividend_yield }%" %></td>
+  </tr>
+  <tr>
+    <td>株価</td>
+    <td><%= "￥#{@stock.basic_information&.stock_price&.ceil.to_s(:delimited) }" %></td>
+  </tr>
+  <tr>
+    <td>概要</td>
+    <td><%= @stock.basic_information&.overview %></td>
+  </tr>
+
+  <tr>
+    <td>業種</td>
+    <td><%= @stock.basic_information&.kind_of_industry %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+  決算
+  </tr>
+  <tr>
+    <td width="110"></td>
+    <td >３期前</td>
+    <td>２期前</td>
+    <td>前期</td>
+    <td>今期</td>
+  </tr>
+  <tr>
+    <td>売上高</td>
+    <td><%= '￥' + @stock.sale&.sales_two_fiscal_year_before&.ceil&.to_s(:delimited) %></td>
+    <td><%= '￥' + @stock.sale&.privious_year_sales&.ceil&.to_s(:delimited) %></td>
+    <td><%= '￥' + @stock.sale&.sales_for_this_fiscal_year&.ceil&.to_s(:delimited) %></td>
+    <td><%= '￥' + @stock.sale&.next_fiscal_sales&.ceil&.to_s(:delimited) %></td>
+  </tr>
+  <tr>
+    <td>営業利益</td>
+    <td><%= '￥' + @stock.operating_income&.operating_income_two_fiscal_year_before&.ceil&.to_s(:delimited) %></td>
+    <td><%= '￥' + @stock.operating_income&.privious_year_operating_income&.ceil&.to_s(:delimited) %></td>
+    <td><%= '￥' + @stock.operating_income&.operating_income_for_this_fiscal_year&.ceil&.to_s(:delimited) %></td>
+    <td><%= '￥' + @stock.operating_income&.next_fiscal_operating_income&.ceil&.to_s(:delimited) %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    指数
+  </tr>
+  <tr>
+    <td>PER（一株あたり当期利益）</td>
+    <td><%= @stock.basic_index&.per %></td>
+  </tr>
+  <tr>
+    <td>PBR（一株当たり純資産）</td>
+    <td><%= @stock.basic_index&.pbr %></td>
+  </tr>
+  <tr>
+    <td>ROE（自己資本利益率）</td>
+    <td><%= @stock.various_index&.roe %></td>
+  </tr>
+  <tr>
+    <td>ROA（総資産利益率）</td>
+    <td><%= @stock.various_index&.roa %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    財務情報
+  </tr>
+  <tr>
+    <td>純利益</td>
+    <td><%= "￥#{@stock.financial_information&.net_income&.ceil&.to_s(:delimited) }" %></td>
+  </tr>
+  <tr>
+    <td>総資産</td>
+    <td><%= "￥#{@stock.financial_information&.total_assets&.ceil&.to_s(:delimited) }" %></td>
+  </tr>
+
+  <tr>
+    <td>自己資本</td>
+    <td><%= "￥#{@stock.financial_information&.net_worth&.ceil&.to_s(:delimited) }" %></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    外部サイト一覧
+  </tr>
+  <tr>
+    <td>かぶたんURL</td>
+    <td><%= link_to('かぶたん',"https://kabutan.jp/stock/?code=#{@stock.securities_code}") %></td>
+  </tr>
+  <tr>
+    <td>みんかぶURL</td>
+    <td><%= link_to('みんかぶ',@stock.basic_information&.url) %></td>
+  </tr>
+  <tr>
+    <td>日経URL</td>
+    <td><%= link_to('日本経済新聞',"https://www.nikkei.com/nkd/company/?scode=#{@stock.securities_code}") %></td>
+  </tr>
+  <tr>
+    <td>YAHOO！ファイナンスURL</td>
+    <td><%= link_to('YAHOO！ファイナンス',"https://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{@stock.securities_code}") %></td>
+  </tr>
+</table>

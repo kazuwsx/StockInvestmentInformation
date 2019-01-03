@@ -1,0 +1,20 @@
+<div class="explanation">
+  <h1>低価格銘柄100選</h1>
+  <p>株価が安い株（ETF,証券、商品先物取引業を除く）を１００銘柄選出</p>
+</div>
+<table>
+  <tr>
+    <td>順位</td>
+    <td>証券番号</td>
+    <td>会社名</td>
+    <td>株価</td>
+  </tr>
+  <% @stocks.each_with_index do |stock, i| %>
+    <tr>
+      <td><%= "#{i+1}位" %></td>
+      <td><%= stock.securities_code %></td>
+      <td><%= link_to stock.corp_name.truncate(40, omission: '~~~'), stock_path(stock.securities_code) %></td>
+      <td><%= "#{stock.basic_information&.stock_price.to_i}円" %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,6 @@
+<tr>
+  <td><%= stock.securities_code %></td>
+  <td><%= link_to stock.corp_name.truncate(40, omission: '~~~'), stock_path(stock.securities_code) %>　</td>
+  <td><%= "#{stock.basic_information.stock_price.ceil.to_s(:delimited)}円" %>
+  <td><%= "#{stock.basic_information.market_capitalization.div(1000).to_s(:delimited)}千円" %>
+</tr>

@@ -1,0 +1,30 @@
+<div class="side_bar">
+  <ul>
+    <li><%= link_to 'HOME', controller: :stocks, action: :index  %></li>
+  </ul>
+  <ul>
+    <p>証券コード、会社名から検索</p>
+    <%= form_with url:'/search_stock', method: :get, local: :true do |f| %>
+    <p>
+        <%= f.text_field :search  %>
+        <%= f.submit "検索" %>
+    </p>
+    <% end %>
+  </ul>
+  <ul>
+    <p>Ranking</p>
+    <li class="categories"><%= link_to '時価総額 ランキング', market_capitalization_ranking_path  %></li>
+    <li class="categories"><%= link_to 'PER ランキング', per_ranking_path  %></li>
+    <li class="categories"><%= link_to 'PBR ランキング', pbr_ranking_path  %></li>
+    <li class="categories"><%= link_to 'ROE ランキング', roe_ranking_path  %></li>
+    <li class="categories"><%= link_to 'ROA ランキング', roa_ranking_path  %></li>
+    <li class="categories"><%= link_to '魔法の公式', masic_formula_ranking_path  %></li>
+    <li class="categories"><%= link_to '魔法の公式（1000円以下）', masic_formula_ranking_under_one_hundred_yen_path  %></li>
+    <li class="categories"><%= link_to '高配当株１００選', the_highest_dividend_yields_path  %></li>
+    <li class="categories"><%= link_to '低価格銘柄１００選', cheep_stocks_path  %></li>
+  </ul>
+  <ul>
+    <li class="categories"><%= link_to 'お気に入りリスト', favorite_list_path %></li>
+    <li class="categories"><%= link_to '業種一覧', types_of_businesses_path %></li>
+  </ul>
+</div>

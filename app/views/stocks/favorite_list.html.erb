@@ -1,0 +1,27 @@
+<div class="explanation">
+  <h1>お気に入りリスト</h1>
+  <p>
+    お気に入りに追加した銘柄一覧<br>
+  </p>
+</div>
+<table>
+  <tr>
+    <td>順位</td>
+    <td>証券番号</td>
+    <td>会社名</td>
+    <td>株価</td>
+    <td>業種</td>
+    <td>配当利回り</td>
+  </tr>
+  <% @stocks.each_with_index do |stock, i| %>
+    <tr>
+      <td><%= "#{i+1}位" %></td>
+      <td><%= stock.securities_code %></td>
+      <td><%= link_to stock.corp_name.truncate(40, omission: '~~~'), stock_path(stock.securities_code) %></td>
+      <td><%= "￥ #{stock.basic_information&.stock_price.ceil.to_s(:delimited)} " %></td>
+      <td><%= stock.basic_information&.kind_of_industry %></td>
+      <td><%= "#{stock.basic_information&.dividend_yield}%" %></td>
+      <td><%= link_to "お気に入りから削除", remove_from_favorite_path( securities_code: stock.securities_code) %><br></td>
+    </tr>
+  <% end %>
+</table>
