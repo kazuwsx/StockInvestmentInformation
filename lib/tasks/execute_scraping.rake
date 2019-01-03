@@ -3,7 +3,7 @@ require 'open_uri_redirections'
 namespace :execute_scraping do
   desc 'スクレイピングの実行'
   task :valueGetFromKabutan => :environment do
-    for number in 6241..9999 do
+    for number in 1300..9999 do
       begin
         url = "https://minkabu.jp/stock/#{number}"
         analyzed_document = Scraping.analyzing_page(url)
@@ -26,7 +26,7 @@ namespace :execute_scraping do
           basic_index.show_basic_index(basic_index)
 
           #決済画面のスクレイピング
-          url = "https://minkabu.jp/stock/#{i}/consolidated"
+          url = "https://minkabu.jp/stock/#{number}/consolidated"
           analyzed_document = Scraping.analyzing_page(url)
 
           sale = Sale.where(stock_id: stock_id).first_or_create
