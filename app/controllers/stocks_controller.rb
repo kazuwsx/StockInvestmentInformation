@@ -20,7 +20,7 @@ class StocksController < ApplicationController
 
   def favorite
     stock = Stock.find_by_securities_code(params[:securities_code])
-    stock.favorite = 1
+    stock.favorite = true
     stock.save 
     redirect_back(fallback_location: stock_path(params[:securities_code]))
   end
@@ -31,7 +31,7 @@ class StocksController < ApplicationController
 
   def remove_from_favorite
     stock = Stock.find_by_securities_code(params[:securities_code])
-    stock.favorite = nil
+    stock.favorite = false
     stock.save
     redirect_back(fallback_location: favorite_list_path)
   end

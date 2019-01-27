@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2018_12_24_074316) do
     t.string "corp_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "favorite"
+    t.boolean "favorite", default: false, null: false
     t.index ["favorite"], name: "index_stocks_on_favorite"
   end
 

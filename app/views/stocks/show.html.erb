@@ -1,4 +1,4 @@
-<% if @stock.favorite == nil   %>
+<% if @stock.favorite == false   %>
   <%= link_to "お気に入りに追加", favorite_path( securities_code: @stock.securities_code) %><br>
 <% end %>
 <div class="explanation">
