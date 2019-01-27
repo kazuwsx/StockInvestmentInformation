@@ -1,0 +1,2 @@
+module StockFavoritesHelper
+end

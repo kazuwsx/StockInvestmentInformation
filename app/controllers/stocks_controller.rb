@@ -18,24 +18,6 @@ class StocksController < ApplicationController
     end
   end
 
-  def favorite
-    stock = Stock.find_by_securities_code(params[:securities_code])
-    stock.favorite = true
-    stock.save 
-    redirect_back(fallback_location: stock_path(params[:securities_code]))
-  end
-
-  def favorite_list
-    @stocks = Stock.where(favorite: 1)
-  end
-
-  def remove_from_favorite
-    stock = Stock.find_by_securities_code(params[:securities_code])
-    stock.favorite = false
-    stock.save
-    redirect_back(fallback_location: favorite_list_path)
-  end
-
   def types_of_businesses
     @stocks = BasicInformation.pluck(:kind_of_industry).uniq.reject(&:blank?)
   end

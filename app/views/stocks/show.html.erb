@@ -1,5 +1,5 @@
 <% if @stock.favorite == false   %>
-  <%= link_to "お気に入りに追加", favorite_path( securities_code: @stock.securities_code) %><br>
+  <%= link_to "お気に入りに追加", stock_favorites_path( securities_code: @stock.securities_code), method: :post %><br>
 <% end %>
 <div class="explanation">
   <h1><%= @stock.corp_name %></h1>
