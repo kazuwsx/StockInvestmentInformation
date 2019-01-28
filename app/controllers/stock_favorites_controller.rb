@@ -1,5 +1,4 @@
 class StockFavoritesController < ApplicationController
-
   def index
     @stocks = Stock.where(favorite: true)
   end
