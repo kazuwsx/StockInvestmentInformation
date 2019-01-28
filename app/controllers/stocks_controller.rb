@@ -15,9 +15,4 @@ class StocksController < ApplicationController
     @stocks = Stock.where_with_kind_of_industry(params[:kind_of_industry])
                    .order("basic_informations.market_capitalization DESC")
   end
-
-  private
-  def search_params
-    params.permit(:search)
-  end
 end
