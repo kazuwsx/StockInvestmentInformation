@@ -3,7 +3,7 @@
   <% each_slice.each do |e| %>
     <tr>
     <% e.each do |s| %>
-      <td><%= link_to s, all_stocks_in_this_industry_path( kind_of_industry: s)  %>   </td>
+      <td><%= link_to s, business_index_path( kind_of_industry: s)  %>   </td>
     <%end%>
     <br>
     </tr>
