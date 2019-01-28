@@ -2,15 +2,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'stocks#index'
   resources :stocks, only: [:show]
-
-  stocks = [
-    :types_of_businesses,
-    :all_stocks_in_this_industry,
-  ]
-
-  scope controller: 'stocks' do
-    stocks.each {|s| get s, action: s}
-  end
+  resources :business, only: [:index]
+  resources :search, only: [:index]
+  resources :stock_favorites, only: [:index, :create, :destroy]
+  get :show_all_businesses, to: 'business#show_all_businesses'
 
   rankings = [
     :market_capitalization_ranking,
@@ -28,8 +23,4 @@ Rails.application.routes.draw do
   scope controller: 'ranking' do
     rankings.each {|r| get r, action: r}
   end
-
-  resources :search, only: [:index]
-
-  resources :stock_favorites, only: [:index, :create, :destroy]
 end
