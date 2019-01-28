@@ -4,7 +4,7 @@
   </ul>
   <ul>
     <p>証券コード、会社名から検索</p>
-    <%= form_with url:'/search_stock', method: :get, local: :true do |f| %>
+    <%= form_with url:'/search', method: :get, local: :true do |f| %>
     <p>
         <%= f.text_field :search  %>
         <%= f.submit "検索" %>

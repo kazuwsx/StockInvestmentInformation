@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :stocks, only: [:show]
 
   stocks = [
-    :search_stock,
     :types_of_businesses,
     :all_stocks_in_this_industry,
   ]
@@ -30,6 +29,7 @@ Rails.application.routes.draw do
     rankings.each {|r| get r, action: r}
   end
 
-  resources :stock_favorites, only: [:index, :create, :destroy]
+  resources :search, only: [:index]
 
+  resources :stock_favorites, only: [:index, :create, :destroy]
 end

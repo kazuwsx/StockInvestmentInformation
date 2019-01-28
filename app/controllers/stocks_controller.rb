@@ -7,17 +7,6 @@ class StocksController < ApplicationController
     @stock = Stock.find_by_securities_code(params[:id])
   end
 
-  def search_stock
-    if  [:search] && Stock.find_by(securities_code: search_params[:search]).present?
-      redirect_to stock_path(params[:search])
-    elsif [:search] && Stock.find_by(corp_name: params[:search]).present?
-      stock = Stock.find_by(corp_name: params[:search])
-      redirect_to stock_path(stock.securities_code)
-    else
-      render template: "/stocks/not_exist.html.erb"
-    end
-  end
-
   def types_of_businesses
     @stocks = BasicInformation.pluck(:kind_of_industry).uniq.reject(&:blank?)
   end
